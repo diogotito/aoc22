@@ -1,5 +1,9 @@
+
+
 elfs = File.foreach('input.txt', chomp: true)
   .chunk { _1.empty? && :_separator }
-  .map { _2.map &:to_i }
+  .map { _2.map(&:to_i).sum }
 
-puts elfs.map(&:sum).max(3).sum
+puts elfs.max
+puts elfs.max(3).sum
+
