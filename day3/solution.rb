@@ -1,11 +1,13 @@
-rucksacks = open('input.txt').map do
-	[_1.chomp!.slice!(..._1.size/2), _1].map &:chars
-end
+rucksacks = File.foreach('input.txt', chomp: true).collect &:chars
 
-get_priority = ([''] + (?a..?z).to_a + (?A..?Z).to_a).method :index
+GET_PRIORITY = ([''] + (?a..?z).to_a + (?A..?Z).to_a).method :index
 
-puts rucksacks.sum { (_1 & _2).sum &get_priority }
+# Part 1
+puts rucksacks.sum {
+	_1.each_slice(_1.size / 2).reduce(:&).sum &GET_PRIORITY
+}
 
+# Part 2
 puts rucksacks.each_slice(3).sum { |group|
-	group.map(&:flatten).reduce(:&).sum &get_priority
+	group.reduce(:&).sum &GET_PRIORITY
 }
