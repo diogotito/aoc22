@@ -11,7 +11,7 @@ This feels too boring to solve in `$LANG`.
 So, do you have your Office 365 subscription ready?
 Good, it's time to launch Microsoft Office Excel!
 
-![Excel splash screen](Pasted%20image%2020221206032014.png)
+![Excel splash screen](imgs/03-20-14.png)
 <!--Good morning-->
 
 Start a blank workbook,
@@ -27,18 +27,18 @@ in the URL parts. Wait... why does it says "URL parts"?
 Are we supposed to split this up somehow?
 Yeah, why not, let's fill it like this, to see where it gets us:
 
-![From Web](Pasted%20image%2020221206154143.png)
+![From Web](imgs/15-41-43.png)
 _(You can get your cookies in the DevTools under Storage > Cookies)_
 
-![Anonymous](Pasted%20image%2020221206130853.png)
+![Anonymous](imgs/13-08-53.png)
 
 Looks like we have our input!
 
-![We have input!](Pasted%20image%2020221206040445.png)
+![We have input!](imgs/04-04-45.png)
 
 I'm not done with this part though, because I'm wondering what that "Transform Data" button does...
 
-![Into the Power Query Editor](Pasted%20image%2020221206041007.png)
+![Into the Power Query Editor](imgs/04-10-07.png)
 
 Oooh what is this?
 
@@ -56,16 +56,16 @@ Seems legit.
 What is that "Source" step?
 Clicking it puts this expression in the formula bar
 
-![lol URL parts](Pasted%20image%2020221206155200.png)
+![lol URL parts](imgs/15-52-00.png)
 
 Looks like those "URL parts" were turned into plain string concatenation. This looks useless. What's the point?
 Looking to the right we see this little gear icon on the Source step
 
-![Query Settings](Pasted%20image%2020221206160333.png)
+![Query Settings](imgs/16-03-33.png)
 
 Clicking it brings up this window:
 
-![Comma-Separated Values](Pasted%20image%2020221206161553.png)
+![Comma-Separated Values](imgs/16-15-53.png)
 
 Gross. I thought only web developers on Macs suffered from [scrollbar blindness](https://web.archive.org/web/20210409223357/https://svenkadak.com/blog/scrollbar-blindness)
 But the strings were put each in its "URL part" text field for us to edit more conveniently. And the tooltip mentions parameters... We'll have to take a look into that later.
@@ -74,20 +74,20 @@ Also of note, we can reconfigure the parsing process of our puzzle input.
 So, Power Query is a point-and-click interface that has a 1-to-1 correspondence to written expressions in a language called Power Query M (the M stands for Mashup).[^3]
 Then there's this button labelled "Advanced Editor" in the ribbon:
 
-![Advanced Editor tooltip](Pasted%20image%2020221206163228.png)
+![Advanced Editor tooltip](imgs/16-32-28.png)
 
-![Advanced Editor](Pasted%20image%2020221206163351.png)
+![Advanced Editor](imgs/16-33-51.png)
 So each "Step" corresponds to a binding in this `let ... in` expression, and steps built by Power Query act on the binding of the line above it in the generated M code.
 This is functional programming for the masses!
 
 So, with the power of FP in our hands, how can we improve what was given to us by the "From Web" wizard?
 
-![New Parameter](Pasted%20image%2020221206164223.png)
+![New Parameter](imgs/16-42-23.png)
 
 ### Parameterizing with a capital P
 
 Power Query has the notion of Parameters. Let's create three of those for the year, day, and session cookie of the Advent of Code input!
-![Manage Parameters](Pasted%20image%2020221206165312.png)
+![Manage Parameters](imgs/16-53-12.png)
 These parameters appear on the left sidebar next to our "input" query.
 Now we should be able to use them to actually parameterize "input".
 Let's do that in the Advanced Editor, like the programmers we are, and tidy up the code a little while we are at it:
