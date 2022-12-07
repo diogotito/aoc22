@@ -71,7 +71,7 @@ Gross. I thought only web developers on Macs suffered from [scrollbar blindness]
 But the strings were put each in its "URL part" text field for us to edit more conveniently. And the tooltip mentions parameters... We'll have to take a look into that later.
 Also of note, we can reconfigure the parsing process of our puzzle input.
 
-So, Power Query is a point-and-click interface that has a 1-to-1 correspondence to written expressions in a language called Power Query M (the M stands for Mashup).[^3
+So, Power Query is a point-and-click interface that has a 1-to-1 correspondence to written expressions in a language called Power Query M (the M stands for Mashup).[^3]
 Then there's this button labelled "Advanced Editor" in the ribbon:
 
 ![Advanced Editor tooltip](Pasted%20image%2020221206163228.png)
