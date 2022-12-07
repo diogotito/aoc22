@@ -26,15 +26,20 @@ Click Data > From Web in the ribbon, then Advanced, then paste
 in the URL parts. Wait... why does it says "URL parts"?
 Are we supposed to split this up somehow?
 Yeah, why not, let's fill it like this, to see where it gets us:
+
 ![From Web](Pasted%20image%2020221206154143.png)
 _(You can get your cookies in the DevTools under Storage > Cookies)_
 
 ![Anonymous](Pasted%20image%2020221206130853.png)
 
 Looks like we have our input!
+
 ![We have input!](Pasted%20image%2020221206040445.png)
+
 I'm not done with this part though, because I'm wondering what that "Transform Data" button does...
+
 ![Into the Power Query Editor](Pasted%20image%2020221206041007.png)
+
 Oooh what is this?
 
 ## The Power Query Editor
@@ -43,19 +48,25 @@ Or: an Excel for loading Excel[^1] data
 
 We have many buttons at our disposal that add transformations steps to be applied sequentially to the source data, as is evident by the name "APPLIED STEPS" on the right.
 
-Near the top we see something akin to Excel's formula bar, but the code in it isn't an Excel formula: it's an expression written in a language called [Power Query M](https://learn.microsoft.com/en-us/powerquery-m/m-spec-introduction) [^2].
+Near the top we see something akin to Excel's formula bar, but the code in it isn't an Excel formula: it's an expression written in a language called [Power Query M](https://learn.microsoft.com/en-us/powerquery-m/m-spec-introduction)[^2].
 Each Step on the right has its own M expression describing the transformation done to the data from the previous step.
 
 This last step, "Change Type", is converting Column1 and Column2 to `type text`.
 Seems legit.
 What is that "Source" step?
 Clicking it puts this expression in the formula bar
+
 ![lol URL parts](Pasted%20image%2020221206155200.png)
+
 Looks like those "URL parts" were turned into plain string concatenation. This looks useless. What's the point?
 Looking to the right we see this little gear icon on the Source step
+
 ![Query Settings](Pasted%20image%2020221206160333.png)
+
 Clicking it brings up this window:
+
 ![Comma-Separated Values](Pasted%20image%2020221206161553.png)
+
 Gross. I thought only web developers on Macs suffered from [scrollbar blindness](https://web.archive.org/web/20210409223357/https://svenkadak.com/blog/scrollbar-blindness)
 But the strings were put each in its "URL part" text field for us to edit more conveniently. And the tooltip mentions parameters... We'll have to take a look into that later.
 Also of note, we can reconfigure the parsing process of our puzzle input.
@@ -111,6 +122,8 @@ so where are my functions? We even went to the trouble of defining Parameters.
 TODO FINISH WRITING THIS
 
 ---
-[^1] or PowerBI
-[^2] Like C#, it has a [downloadable spec](https://download.microsoft.com/download/8/1/A/81A62C9B-04D5-4B6D-B162-D28E4D848552/Power%20Query%20M%20Formula%20Language%20Specification%20(July%202019).pdf)
+[^1]: or PowerBI
+
+[^2]: Like C#, it has a [downloadable spec](https://download.microsoft.com/download/8/1/A/81A62C9B-04D5-4B6D-B162-D28E4D848552/Power%20Query%20M%20Formula%20Language%20Specification%20(July%202019).pdf)
+
 [^3] Reminds me of some newer languages like [Enso](https://enso.org/)
