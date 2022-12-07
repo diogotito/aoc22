@@ -4,6 +4,8 @@ Solutions for Advent of Code 2022
 Last year in Python was ok:
 my goal was to solve most challanges
 and I just used the language I happened to be working with more at the time.
+<br>
+_Correction:_ Turns out I wrote some solutions in Ruby and Haskell last year!
 
 This year, though, I don't have any clear goals in mind.
 I probably should focus on a systems programing language like C++, Go or Rust.
