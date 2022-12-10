@@ -1,10 +1,10 @@
 # Day 2 solution in Microsoft Office Excel
 
 Day 2 has us playing Rock Paper Scissors ~~in a beach in front of~~
-<!--the jungle where we are supposed to hunt for star fruit with some kind of _magical christmas energy_.-->
-Enough setting!
+_Enough setting!_
 <!--a game whose I struggle to spell correctly without googling (no, wait, I thing I got the name right this time!)-->
 Anyways, we are instructed to follow a strategy guide, given by an elf, that tells us when to win, draw or lose.
+<!-- TODO this feels too boring to read out -->
 
 This feels too boring to solve in `$LANG`.
 
@@ -117,13 +117,13 @@ We have generalized fetching input for Advent of Code problems, and it's time we
 
 We built a Query, but Power Query M looks pretty much like a functional programming language in the vein of F#
 <!--(at least that's the syntax highlighting mode I choose for the block of code above),-->
-so where are my functions? We even went to the trouble of defining Parameters.
+so where are my Functions? We even went to the trouble of defining Parameters.
 
 TODO FINISH WRITING THIS
 
 ---
 [^1]: or PowerBI
 
-[^2]: Like C#, it has a [downloadable spec](https://download.microsoft.com/download/8/1/A/81A62C9B-04D5-4B6D-B162-D28E4D848552/Power%20Query%20M%20Formula%20Language%20Specification%20(July%202019).pdf)
+[^2]: Like C#, it has a [downloadable spec](https://download.microsoft.com/download/8/1/A/81A62C9B-04D5-4B6D-B162-D28E4D848552/Power%20Query%20M%20Formula%20Language%20Specification%20(July%202019).pdf) from the Microsoft website
 
-[^3]: Reminds me of some newer languages like [Enso](https://enso.org/)
+[^3]: [Enso](https://enso.org/) comes to mind
