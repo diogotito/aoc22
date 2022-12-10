@@ -10,7 +10,7 @@ stacks_1 = [[]] +
         letters.lstrip[...-1].reverse.chars
     }
 
-stacks_2 = stacks_1.clone
+stacks_2 = stacks_1.map &:clone
 
 commands.each do
   _1 =~ /move (\d+) from (\d+) to (\d+)/
@@ -26,7 +26,8 @@ end
 
 def show_stacks(stacks)
   puts stacks.drop(1)
-         .map { _1.join.reverse.rjust(stacks.map(&:count).max).chars }.transpose
+         .map { _1.join.reverse.rjust(stacks.map(&:count).max).chars }
+         .transpose
          .map { _1.flat_map { |c| c != " " ? "[#{c}] " : " #{c}  " }.join }
   puts (1...stacks.count).map { |n| "#{n.to_s.center(3)} " }.join
 end
@@ -39,4 +40,4 @@ puts stacks_1.map(&:last).join
 puts
 show_stacks stacks_2
 puts
-puts stacks_2.map(&:last).join # TODO Wrong answer!
+puts stacks_2.map(&:last).join
