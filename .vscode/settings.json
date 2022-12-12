@@ -1,7 +1,7 @@
 {
-    "ruby.codeCompletion": "rcodetools",
-    "ruby.intellisense": "rubyLocate",
-    "ruby.useLanguageServer": true,
+    "ruby.codeCompletion": false,
+    "ruby.intellisense": false,
+    "ruby.useLanguageServer": false,
     "rubyLsp.enabledFeatures": {
         "codeActions": true,
         "diagnostics": true,
@@ -15,5 +15,8 @@
         "onTypeFormatting": true,
         "selectionRanges": true,
         "semanticHighlighting": true
+    },
+    "ruby.lint": {
+        "rubocop": false
     }
 }
