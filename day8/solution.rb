@@ -5,10 +5,15 @@ RANGE = 0...$input.count
 
 def each_tree
   return to_enum(__method__) unless block_given?
-  RANGE.each { |x| RANGE.each { |y| yield [x, y] }}
+  RANGE.each do |x|
+    RANGE.each do |y|
+      yield [x, y]
+    end
+  end
 end
 
 def cross_trees((x, y), (dir_x, dir_y))
+  return to_enum(__method__, [x, y], [dir_x, dir_y]) unless block_given?
   while RANGE.cover? x and RANGE.cover? y
     yield x, y
     x += dir_x
@@ -47,16 +52,15 @@ puts $visible.sum { |row| row.sum { |tree| tree ? 1 : 0 } }
 
 def count_trees((x, y), dir)
   my_height = $heights[y][x]
-  count = 0
-  cross_trees [x, y], dir do |cx, cy|
-    next if x == cx and y == cy
-    if $heights[cy][cx] < my_height
-      count += 1
-    else
-      break
-    end
-  end
-  count
+
+  c = cross_trees([x, y], dir).lazy.drop(1)
+  return 0 if c.take(1).entries.empty?
+
+  # tenho de retornar 0 quando me atirar de uma borda
+
+  c.take_while do |cx, cy|
+    $heights[cy][cx] < my_height
+  end.count + 1
 end
 
 puts each_tree.map { |pos|
