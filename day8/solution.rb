@@ -47,13 +47,11 @@ RANGE.each do |i|
 end
 
 puts $visible.sum { |row| row.sum { |tree| tree ? 1 : 0 } }
+# Answer: 1845
 
 #-------------------------------------------------------------------------------
 # Part Two
 #-------------------------------------------------------------------------------
-
-$heights[RANGE.begin] = $heights[RANGE.end] = Array.new(RANGE.count, 9)
-$heights.each { |row| row[RANGE.begin] = row[RANGE.end] = 9 }
 
 def count_trees((x, y), dir)
   my_height = $heights[y][x]
@@ -71,33 +69,9 @@ def count_trees((x, y), dir)
   view_dist
 end
 
-pp each_tree.map { |pos|
-  view_distances = {
-    up: count_trees(pos, [0, -1]),
-    down: count_trees(pos, [0, 1]),
-    left: count_trees(pos, [-1, 0]),
-    right: count_trees(pos, [1, 0])
-  }
-  scenic_score = view_distances.values.reduce :*
-  [scenic_score, view_distances, pos, $heights[pos[1]][pos[0]]]
-}.max_by(10, &:first)
-
-# Think
-# Quero encontrar o indice
-# find_index
-[1, 2, 3, 4, 5].find_index { |n| n.even? }
-
-# Wrong answers:
-197_400  # wrong
-201_348  # too low
-254_592  # too high
-
-# Queue
-230_112
-
-__END__
-30373
-25512
-65332
-33549
-35390
+puts each_tree.map { |pos|
+  [[0, -1], [0, 1], [-1, 0], [1, 0]]
+    .map { |dir| count_trees(pos, dir) }
+    .reduce :*
+}.max
+# Answer: 230112
