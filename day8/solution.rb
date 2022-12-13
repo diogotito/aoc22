@@ -55,13 +55,11 @@ puts $visible.sum { |row| row.sum { |tree| tree ? 1 : 0 } }
 
 def count_trees((x, y), dir)
   my_height = $heights[y][x]
-  enum = cross_trees([x, y], dir).lazy.drop(1)
-  return 0 if enum.take(1).force.empty?
-
-  1 + enum.find_index do |cx, cy|
-    $heights[cy][cx] >= my_height or
+  cross_trees([x, y], dir).find_index do |cx, cy|
+    [cx, cy] != [x, y] and
+      $heights[cy][cx] >= my_height or
       [cx, cy].any? { |coord| RANGE.minmax.include? coord }
-  end
+  end or 0
 end
 
 puts each_tree.map { |pos|
