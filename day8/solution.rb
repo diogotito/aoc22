@@ -3,17 +3,7 @@ $heights = $input.map { |row| row.map(&:to_i) }
 
 RANGE = 0...$input.count
 
-def each_tree
-  return to_enum(__method__) unless block_given?
-
-  RANGE.each do |x|
-    RANGE.each do |y|
-      yield [x, y]
-    end
-  end
-end
-
-def cross_trees((x, y), (dir_x, dir_y))
+def walk_trees((x, y), (dir_x, dir_y))
   return to_enum(__method__, [x, y], [dir_x, dir_y]) unless block_given?
 
   while RANGE.cover? x and RANGE.cover? y
@@ -27,23 +17,24 @@ end
 # Part One
 #-------------------------------------------------------------------------------
 
-$visible = $input.map { |row| row.map { false } }
+visible = $input.map { |row| row.map { false } }
 
-def beam
+# Make a closure that marks visible trees in a walk
+def mark_in(visible)
   tallest = -1
   lambda do |x, y|
     if $heights[y][x] > tallest
       tallest = $heights[y][x]
-      $visible[y][x] = true
+      visible[y][x] = true
     end
   end
 end
 
 RANGE.each do |i|
-  cross_trees [i, RANGE.min], [0, 1], &beam
-  cross_trees [i, RANGE.max], [0, -1], &beam
-  cross_trees [RANGE.min, i], [1, 0], &beam
-  cross_trees [RANGE.max, i], [-1, 0], &beam
+  walk_trees [i, RANGE.min], [0, 1],  &mark_in(visible) # down
+  walk_trees [i, RANGE.max], [0, -1], &mark_in(visible) # up
+  walk_trees [RANGE.min, i], [1, 0],  &mark_in(visible) # right
+  walk_trees [RANGE.max, i], [-1, 0], &mark_in(visible) # left
 end
 
 puts $visible.sum { |row| row.sum { |tree| tree ? 1 : 0 } }
@@ -53,18 +44,18 @@ puts $visible.sum { |row| row.sum { |tree| tree ? 1 : 0 } }
 # Part Two
 #-------------------------------------------------------------------------------
 
-def count_trees((x, y), dir)
+def view_distance((x, y), dir)
   my_height = $heights[y][x]
-  cross_trees([x, y], dir).find_index do |cx, cy|
+  walk_trees([x, y], dir).find_index do |cx, cy|
     [cx, cy] != [x, y] and
       $heights[cy][cx] >= my_height or
       [cx, cy].any? { |coord| RANGE.minmax.include? coord }
   end or 0
 end
 
-puts each_tree.map { |pos|
-  [[0, -1], [0, 1], [-1, 0], [1, 0]]
-    .map { |dir| count_trees(pos, dir) }
+puts RANGE.entries.product(RANGE.entries).map { |pos|
+  [[0, -1], [0, 1], [-1, 0], [1, 0]] # up, down, left, right
+    .map { |dir| view_distance(pos, dir) }
     .reduce :*
 }.max
 # Answer: 230112
