@@ -1,2 +1,3 @@
 Gemfile
 Gemfile.lock
+.vscode/rdbg_autoattach.json
