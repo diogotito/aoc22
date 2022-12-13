@@ -18,5 +18,7 @@
     },
     "ruby.lint": {
         "rubocop": false
-    }
+    },
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true
 }
