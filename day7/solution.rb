@@ -1,5 +1,5 @@
 # Global state
-$ROOT = { total_size: 0 }
+$ROOT = { total_size: 0, parent: nil }
 $cwd = $ROOT
 
 $all_dirs = [$ROOT]  # Remember all directories to easily query them for sizes
