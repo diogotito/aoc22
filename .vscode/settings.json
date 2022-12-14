@@ -20,5 +20,6 @@
         "rubocop": false
     },
     "editor.formatOnSave": true,
-    "editor.formatOnType": true
+    "editor.formatOnType": true,
+    "prettier.proseWrap": "always"
 }
