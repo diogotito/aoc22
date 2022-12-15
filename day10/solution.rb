@@ -21,12 +21,18 @@ class CPU
 
   def addx(n)
     @cycles << @X
-    @X += n
+    crt
     @cycles << @X
+    @X += n
   end
 
   def noop
     @cycles << @X
+    crt
+  end
+
+  def crt
+    # TODO
   end
 
   def current_cycle = @cycles.count
@@ -41,5 +47,12 @@ describe CPU do
     cpu.run(open('input_example.txt'))
     _([20, 60, 100, 140, 180, 220].sum { cpu.cycle_strength _1 })
       .must_equal 13140
+  end
+
+  it 'gives the right answer to part 1' do
+    cpu = CPU.new
+    cpu.run(open('input.txt'))
+    _([20, 60, 100, 140, 180, 220].sum { cpu.cycle_strength _1 })
+      .must_equal 14560
   end
 end
