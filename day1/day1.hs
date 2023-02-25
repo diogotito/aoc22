@@ -3,11 +3,11 @@ import           Data.List     (sort)
 
 -- Slices a list of lines in groups separated by empty lines
 records :: [String] -> [[String]]
-records lines = records' lines [] []
+records lines = go lines [] []
   where
-    records' ("":ls) r rs = records' ls [] (r : rs)
-    records' (l:ls) r rs  = records' ls (l : r) rs
-    records' [] r rs      = r : rs
+    go ("":ls) r rs = go ls [] (r : rs)
+    go (l:ls) r rs  = go ls (l : r) rs
+    go [] r rs      = r : rs
 
 part1 :: String -> Int
 part1 input =
