@@ -48,3 +48,7 @@ then applied a conditional formatting with color scale. For the picture, I
 zoomed out to 25%.
 
 ![Visualization of visited positions by the rope tail](visualization.png)
+
+**Update 2023-12-21:**
+I could've also written a [.pbm](https://netpbm.sourceforge.net/doc/pbm.html) image and open it in a compatible image viewer.
+I could generate a bunch of these and create an animated GIF or video with a line of FFmpeg.
